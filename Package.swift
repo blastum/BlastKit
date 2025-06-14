@@ -1,26 +1,43 @@
-// swift-tools-version: 6.2
+// swift-tools-version:6.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "blastKit",
+    name: "BlastKit",
+    platforms: [
+        .iOS(.v14), .macOS(.v13)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "blastKit",
-            targets: ["blastKit"]
-        ),
+        .library(name: "FetchKit", targets: ["FetchKit"]),
+        .library(name: "SwiftEase", targets: ["SwiftEase"]),
+        .library(name: "TIPSKit", targets: ["TIPSKit"]),
+        .library(name: "TIPSCalendarKit", targets: ["TIPSCalendarKit"]),
+        .library(name: "BlastKit", targets: ["FetchKit", "SwiftEase", "TIPSKit", "TIPSCalendarKit"])
+    ],
+    dependencies: [
+        // Add external dependencies here
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "blastKit"
+        .target(name: "FetchKit", dependencies: []),
+        .target(name: "SwiftEase", dependencies: []),
+        .target(name: "TIPSKit", dependencies: ["FetchKit"]),
+        .target(name: "TIPSCalendarKit", dependencies: ["TIPSKit", "SwiftEase"]),
+        .testTarget(
+            name: "FetchKitTests",
+            dependencies: ["FetchKit"]
         ),
         .testTarget(
-            name: "blastKitTests",
-            dependencies: ["blastKit"]
+            name: "SwiftEaseTests",
+            dependencies: ["SwiftEase"]
         ),
+        .testTarget(
+            name: "TIPSKitTests",
+            dependencies: ["TIPSKit"]
+        ),
+        .testTarget(
+            name: "TIPSCalendarKitTests",
+            dependencies: ["TIPSCalendarKit"]
+        )
     ]
 )
