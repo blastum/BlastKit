@@ -1,6 +1,9 @@
 name: Generate TIPS Calendar
 
 on:
+	push:
+		branches:
+			- trunk
 	schedule:
 		- cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
 	workflow_dispatch:  # Manual trigger
@@ -8,9 +11,10 @@ on:
 permissions:
 	contents: write
 	pages: write
+	id-token: write
 
 jobs:
-	generate:
+	build:
 		runs-on: ubuntu-latest
 		steps:
 			- name: Checkout repository
@@ -47,7 +51,7 @@ jobs:
 						<h1>TIPS Payout Calendar</h1>
 						<p><a href="calendar.ics">Download Calendar (iCal format)</a></p>
 						<p>You can subscribe to this calendar in your calendar application using the URL:</p>
-						<code>https://[your-username].github.io/Blastkit3/calendar.ics</code>
+						<code>https://blastum.github.io/BlastKit/calendar.ics</code>
 					</body>
 					</html>
 					EOF
@@ -59,8 +63,17 @@ jobs:
 				uses: actions/upload-pages-artifact@v3
 				with:
 					path: '_site'
-			
+	
+	deploy:
+		environment:
+			name: github-pages
+			url: ${{ steps.deployment.outputs.page_url }}
+		runs-on: ubuntu-latest
+		needs: build
+		permissions:
+			pages: write
+			id-token: write
+		steps:
 			- name: Deploy to GitHub Pages
 				id: deployment
 				uses: actions/deploy-pages@v4
-
