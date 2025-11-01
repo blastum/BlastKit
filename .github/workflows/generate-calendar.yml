@@ -23,7 +23,7 @@ jobs:
       - name: Setup Swift
         uses: swiftlang/setup-swift@main
         with:
-          swift-version: "5.10"
+          swift-version: "5.9"
           cache-mode: "swiftpm"
       
       - name: Generate Calendar

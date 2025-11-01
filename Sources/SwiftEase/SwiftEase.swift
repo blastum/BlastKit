@@ -29,7 +29,7 @@ extension Sequence where Element: Hashable {
 // MARK: - DateFormatter Extensions
 
 public extension DateFormatter {
-    nonisolated(unsafe) static let iso8601: ISO8601DateFormatter = {
+    static let iso8601: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         return formatter
     }()
