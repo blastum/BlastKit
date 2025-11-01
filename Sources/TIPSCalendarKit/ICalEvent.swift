@@ -57,9 +57,6 @@ public struct ICalEvent {
 			let endIndex = remaining.index(remaining.startIndex, offsetBy: maxLength)
 			result.append(String(remaining[..<endIndex]))
 			remaining = String(remaining[endIndex...])
-			if !remaining.isEmpty {
-				remaining = " " + remaining
-			}
 		}
 
 		if !remaining.isEmpty {
