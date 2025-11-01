@@ -1,0 +1,111 @@
+{
+	"New TIPS Class": {
+		"prefix": "tipsclass",
+		"body": [
+			"import Foundation",
+			"import TIPSKit",
+			"",
+			"public struct ${1:ClassName} {",
+			"    // MARK: - Properties",
+			"    ${2:// properties}",
+			"    ",
+			"    // MARK: - Initialization",
+			"    ",
+			"    // MARK: - Public Methods",
+			"}",
+			"",
+			"// MARK: - ${1:ClassName} Extensions",
+			"",
+			"extension ${1:ClassName} {",
+			"    ${3:// methods}",
+			"}"
+		],
+		"description": "Create a new TIPS-related class with standard structure"
+	},
+	"New Test Class": {
+		"prefix": "testclass",
+		"body": [
+			"import XCTest",
+			"@testable import ${1:ModuleName}",
+			"",
+			"final class ${2:ClassName}Tests: XCTestCase {",
+			"    // MARK: - Properties",
+			"    ",
+			"    // MARK: - Setup & Teardown",
+			"    override func setUp() {",
+			"        super.setUp()",
+			"        ${3:// setup code}",
+			"    }",
+			"    ",
+			"    override func tearDown() {",
+			"        ${4:// cleanup code}",
+			"        super.tearDown()",
+			"    }",
+			"    ",
+			"    // MARK: - Tests",
+			"    func test${5:MethodName}_${6:ExpectedBehavior}() {",
+			"        ${7:// arrange code}",
+			"        ",
+			"        ${8:// act code}",
+			"        ",
+			"        ${9:// assert code}",
+			"    }",
+			"}"
+		],
+		"description": "Create a new test class with AAA pattern"
+	},
+	"Error Type": {
+		"prefix": "errortype",
+		"body": [
+			"public enum ${1:ErrorName}: Error, LocalizedError {",
+			"    case ${2:caseName}",
+			"    ",
+			"    public var errorDescription: String? {",
+			"        switch self {",
+			"        case .${2:caseName}:",
+			"            return \"${3:Error description}\"",
+			"        }",
+			"    }",
+			"}"
+		],
+		"description": "Create a custom error type with localized description"
+	},
+	"Network Service Method": {
+		"prefix": "netmethod",
+		"body": [
+			"func ${1:methodName}() async throws -> ${2:ReturnType} {",
+			"    let endpoint = ${3:EndpointType}()",
+			"    ",
+			"    do {",
+			"        let data = try await networkService.fetch(from: endpoint)",
+			"        return try JSONDecoder().decode(${2:ReturnType}.self, from: data)",
+			"    } catch {",
+			"        throw ${4:ErrorType}.networkError(error)",
+			"    }",
+			"}"
+		],
+		"description": "Create a network service method with async/await"
+	},
+	"TIPS Holding": {
+		"prefix": "tipsholding",
+		"body": [
+			"let holding = TIPSHolding(",
+			"    cusip: \"${1:CUSIP}\",",
+			"    purchaseDate: Date.from(year: ${2:2025}, month: ${3:3}, day: ${4:28}),",
+			"    count: ${5:100}",
+			")"
+		],
+		"description": "Create a TIPS holding with standard format"
+	},
+	"Extension with MARK": {
+		"prefix": "extmark",
+		"body": [
+			"// MARK: - ${1:ExtensionName}",
+			"",
+			"extension ${2:TypeName} {",
+			"    ${3:// extension methods}",
+			"}"
+		],
+		"description": "Create an extension with MARK comment"
+	}
+}

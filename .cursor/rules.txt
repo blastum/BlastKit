@@ -1,0 +1,75 @@
+# Blastkit3 Project Rules
+
+## Coding Standards
+
+### Swift Style
+- Use tabs for indentation (no spaces)
+- Maximum line length: 120 characters
+- Use trailing commas in multi-line collections
+- Prefer `let` over `var` when possible
+- Do not use explicit type annotations where not needed
+- Use implicit return when possible
+- Sort imports alphabetically
+
+### Naming Conventions
+- **Types**: PascalCase nouns describing what they represent (e.g., `TIPSAccount`, `NetworkService`)
+- **Functions/Methods**: camelCase verbs describing what they do (e.g., `loadPortfolio`, `fetchData`)
+- **Variables/Properties**: camelCase nouns or adjectives describing something (e.g., `accountName`, `holdings`, `isValid`)
+- **Constants**: camelCase (e.g., `maxRetries`, `defaultTimeout`)
+- **Enums**: PascalCase, cases camelCase (e.g., `CSVLoaderError.invalidFormat`)
+- **General**: Think carefully about names - they should be clear and descriptive
+
+### Code Organization
+- Use `// MARK: -` for logical sections
+- Group related properties together
+- Place computed properties after stored properties
+- Use extensions for protocol conformance
+- Keep functions focused and under 20 lines when possible
+
+## Testing Standards
+
+### Test Structure
+- Test file naming: `{ClassName}Tests.swift`
+- Test class naming: `{ClassName}Tests`
+- Test method naming: `test{WhatIsBeingTested}_{ExpectedBehavior}`
+- Use descriptive test names that explain the scenario
+
+### Test Patterns
+- Use Swift testing at all times
+- Follow Arrange-Act-Assert (AAA) pattern without explicit comments
+- Use descriptive variable names in tests
+- Mock external dependencies
+- Test both success and failure cases
+- Test edge cases and boundary conditions
+
+### Test Data
+- Use factory methods for test objects
+- Create realistic test data
+- Use constants for repeated test values
+- Clean up test data after each test
+
+## Project-Specific Rules
+
+### TIPS Modules
+- Keep TIPS-related logic in TIPSCalendarKit and TIPSKit
+- Use clear, descriptive names for financial concepts
+- Validate financial data inputs
+- Handle currency and date calculations carefully
+
+### Network Layer
+- Use FetchKit for all network operations
+- Implement proper error handling
+- Use async/await for modern concurrency
+- Mock network calls in tests
+
+### Error Handling
+- Use custom error types with descriptive messages
+- Provide localized error descriptions
+- Log errors appropriately
+- Handle errors gracefully in UI
+
+## File Organization
+- Group related functionality in modules
+- Use clear file names that describe purpose
+- Keep files focused on single responsibility
+- Place shared utilities in SwiftEase module 

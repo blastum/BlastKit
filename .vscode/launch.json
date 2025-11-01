@@ -1,0 +1,40 @@
+{
+	"configurations": [
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Debug PayoutCalculationDemo",
+			"program": "${workspaceFolder:Blastkit3}/.build/debug/PayoutCalculationDemo",
+			"preLaunchTask": "swift: Build Debug PayoutCalculationDemo"
+		},
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Release PayoutCalculationDemo",
+			"program": "${workspaceFolder:Blastkit3}/.build/release/PayoutCalculationDemo",
+			"preLaunchTask": "swift: Build Release PayoutCalculationDemo"
+		},
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Debug TIPSCalendarGenerator",
+			"program": "${workspaceFolder:Blastkit3}/.build/debug/TIPSCalendarGenerator",
+			"preLaunchTask": "swift: Build Debug TIPSCalendarGenerator"
+		},
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Release TIPSCalendarGenerator",
+			"program": "${workspaceFolder:Blastkit3}/.build/release/TIPSCalendarGenerator",
+			"preLaunchTask": "swift: Build Release TIPSCalendarGenerator"
+		}
+	]
+}

@@ -1,0 +1,66 @@
+name: Generate TIPS Calendar
+
+on:
+	schedule:
+		- cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
+	workflow_dispatch:  # Manual trigger
+
+permissions:
+	contents: write
+	pages: write
+
+jobs:
+	generate:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Checkout repository
+				uses: actions/checkout@v4
+			
+			- name: Setup Swift
+				uses: swift-actions/setup-swift@v1
+				with:
+					swift-version: "5.9"
+			
+			- name: Generate Calendar
+				run: |
+					swift run TIPSCalendarGenerator \
+						--input Sources/TIPSCalendarKit/Resources/IRALadder.csv \
+						--input Sources/TIPSCalendarKit/Resources/RothLadder.csv \
+						--output calendar.ics
+			
+			- name: Create pages directory
+				run: mkdir -p _site
+			
+			- name: Copy calendar to pages directory
+				run: cp calendar.ics _site/
+			
+			- name: Create index page
+				run: |
+					cat > _site/index.html << 'EOF'
+					<!DOCTYPE html>
+					<html>
+					<head>
+						<title>TIPS Payout Calendar</title>
+						<meta charset="utf-8">
+					</head>
+					<body>
+						<h1>TIPS Payout Calendar</h1>
+						<p><a href="calendar.ics">Download Calendar (iCal format)</a></p>
+						<p>You can subscribe to this calendar in your calendar application using the URL:</p>
+						<code>https://[your-username].github.io/Blastkit3/calendar.ics</code>
+					</body>
+					</html>
+					EOF
+			
+			- name: Setup Pages
+				uses: actions/configure-pages@v4
+			
+			- name: Upload artifact
+				uses: actions/upload-pages-artifact@v3
+				with:
+					path: '_site'
+			
+			- name: Deploy to GitHub Pages
+				id: deployment
+				uses: actions/deploy-pages@v4
+
