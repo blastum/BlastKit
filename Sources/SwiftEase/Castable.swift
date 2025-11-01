@@ -48,9 +48,9 @@ extension Optional: Castable {
     public func cast<T>(_ type: T.Type) -> T? {
         switch self {
         case .some(let value):
-            value as? T
+            return value as? T
         case .none:
-            nil
+            return nil
         }
     }
 }
