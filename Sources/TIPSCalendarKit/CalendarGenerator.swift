@@ -60,12 +60,10 @@ public class CalendarGenerator {
 			let accountTotal = CurrencyFormatter.format(accountPayout.totalAmount)
 			let hasUnadjusted = accountPayout.unadjustedAmount > 0
 			let asterisk = hasUnadjusted ? "*" : ""
-			lines.append("Account: \(accountPayout.accountName) - \(accountTotal)\(asterisk)")
+			lines.append("\(accountPayout.accountName) - \(accountTotal)\(asterisk)")
 
 			let payoutsByCusip = Dictionary(grouping: accountPayout.payouts) { $0.cusip }
 			let sortedCusips = payoutsByCusip.keys.sorted()
-
-			lines.append("\(accountPayout.accountName):")
 
 			for cusip in sortedCusips {
 				guard let cusipPayouts = payoutsByCusip[cusip] else { continue }
@@ -76,7 +74,7 @@ public class CalendarGenerator {
 				let hasUnadjustedCusip = cusipPayouts.contains { $0.adjustmentStatus == .unadjusted }
 				let cusipAsterisk = hasUnadjustedCusip ? "*" : ""
 
-				lines.append("  • CUSIP: \(cusip), Count: \(totalCount), Payout: \(formattedPayout)\(cusipAsterisk)")
+				lines.append("• \(cusip) (\(totalCount)) \(formattedPayout)\(cusipAsterisk)")
 			}
 
 			lines.append("")
@@ -85,7 +83,7 @@ public class CalendarGenerator {
 		let aggregateTotal = CurrencyFormatter.format(aggregatePayout.totalAmount)
 		let hasUnadjusted = aggregatePayout.unadjustedAmount > 0
 		let asterisk = hasUnadjusted ? "*" : ""
-		lines.append("Aggregate Total: \(aggregateTotal)\(asterisk)")
+		lines.append("Aggregate \(aggregateTotal)\(asterisk)")
 
 		return lines.joined(separator: "\n")
 	}

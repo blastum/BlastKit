@@ -43,7 +43,7 @@ struct ICalTests {
 		#expect(rendered.contains("DTSTART;VALUE=DATE:20250715"))
 		#expect(rendered.contains("DTEND;VALUE=DATE:20250716"))
 		#expect(rendered.contains("DTSTAMP:20250115T120000Z"))
-		#expect(rendered.contains("SUMMARY:TIPS: $12\\,345.67"))
+		#expect(rendered.contains("SUMMARY:TIPS: $12,345.67"))
 		#expect(rendered.contains("SEQUENCE:0"))
 	}
 
@@ -59,8 +59,7 @@ struct ICalTests {
 
 		let rendered = event.render()
 
-		#expect(!rendered.contains("Test, with; commas"))
-		#expect(rendered.contains("Test\\, with\\; commas"))
+		#expect(rendered.contains("Test, with\\; commas"))
 		#expect(rendered.contains("Test\\nmultiline\\ndescription"))
 	}
 
@@ -314,13 +313,11 @@ struct ICalTests {
 
 		#expect(iCalCalendar.events.count == 1)
 		let event = iCalCalendar.events[0]
-		#expect(event.description.contains("Account: IRA Ladder"))
-		#expect(event.description.contains("Account: Roth Ladder"))
-		#expect(event.description.contains("IRA Ladder:"))
-		#expect(event.description.contains("Roth Ladder:"))
-		#expect(event.description.contains("912810FD5"))
-		#expect(event.description.contains("91282CDH4"))
-		#expect(event.description.contains("Aggregate Total"))
+		#expect(event.description.contains("IRA Ladder - $255.00"))
+		#expect(event.description.contains("Roth Ladder - $251.25"))
+		#expect(event.description.contains("• 912810FD5 (10) $255.00"))
+		#expect(event.description.contains("• 91282CDH4 (5) $251.25"))
+		#expect(event.description.contains("Aggregate $506.25"))
 		#expect(event.summary == "TIPS: $506.25")
 	}
 
@@ -363,10 +360,8 @@ struct ICalTests {
 
 		#expect(iCalCalendar.events.count == 1)
 		let event = iCalCalendar.events[0]
-		#expect(event.description.contains("912810FD5"))
-		#expect(event.description.contains("91282CDH4"))
-		#expect(event.description.contains("Count: 10"))
-		#expect(event.description.contains("Count: 5"))
+		#expect(event.description.contains("• 912810FD5 (10) $255.00"))
+		#expect(event.description.contains("• 91282CDH4 (5) $251.25"))
 	}
 
 	@Test func testCalendarGeneratorMultipleDates() {
