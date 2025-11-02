@@ -35,6 +35,24 @@
 			"name": "Release TIPSCalendarGenerator",
 			"program": "${workspaceFolder:Blastkit3}/.build/release/TIPSCalendarGenerator",
 			"preLaunchTask": "swift: Build Release TIPSCalendarGenerator"
+		},
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Debug HTMLGenerationDemo",
+			"program": "${workspaceFolder:Blastkit3}/.build/debug/HTMLGenerationDemo",
+			"preLaunchTask": "swift: Build Debug HTMLGenerationDemo"
+		},
+		{
+			"type": "swift",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:Blastkit3}",
+			"name": "Release HTMLGenerationDemo",
+			"program": "${workspaceFolder:Blastkit3}/.build/release/HTMLGenerationDemo",
+			"preLaunchTask": "swift: Build Release HTMLGenerationDemo"
 		}
 	]
 }

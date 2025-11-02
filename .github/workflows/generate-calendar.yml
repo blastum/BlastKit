@@ -30,11 +30,18 @@ jobs:
             --input Sources/TIPSCalendarKit/Resources/RothLadder.csv \
             --output calendar.ics
       
+      - name: Generate HTML
+        run: |
+          swift run HTMLGenerationDemo
+          mv output.html TIPSCalendar.html
+      
       - name: Create pages directory
         run: mkdir -p _site
       
-      - name: Copy calendar to pages directory
-        run: cp calendar.ics _site/
+      - name: Copy files to pages directory
+        run: |
+          cp calendar.ics _site/
+          cp TIPSCalendar.html _site/
       
       - name: Create index page
         run: |
@@ -47,6 +54,7 @@ jobs:
           </head>
           <body>
             <h1>TIPS Payout Calendar</h1>
+            <p><a href="TIPSCalendar.html">View HTML Calendar</a></p>
             <p><a href="calendar.ics">Download Calendar (iCal format)</a></p>
             <p>You can subscribe to this calendar in your calendar application using the URL:</p>
             <code>https://blastum.github.io/BlastKit/calendar.ics</code>

@@ -40,6 +40,10 @@ let package = Package(
 			name: "TIPSCalendarGenerator",
 			targets: ["TIPSCalendarGenerator"]
 		),
+		.executable(
+			name: "HTMLGenerationDemo",
+			targets: ["HTMLGenerationDemo"]
+		),
 	],
 	dependencies: [],
 	targets: [
@@ -110,6 +114,12 @@ let package = Package(
 			name: "TIPSCalendarGenerator",
 			dependencies: ["TIPSCalendarKit", "TIPSKit"],
 			path: "Sources/TIPSCalendarGenerator"
+		),
+		.executableTarget(
+			name: "HTMLGenerationDemo",
+			dependencies: ["TIPSCalendarKit", "TIPSKit"],
+			path: "Examples",
+			sources: ["HTMLGenerationDemo.swift"]
 		),
 	]
 )
